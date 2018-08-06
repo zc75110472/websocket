@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport">
+    <title>设备电量</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        #box{
+            width: 300px;
+            height: 200px;
+            border: 1px solid blue;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+
+        var battery = navigator.battery || navigator.webkitBattery || navigator.mozBattery || navigator.msBattery;
+        var str = '';
+        if (battery) {
+            str += '<p>你的浏览器支持HTML5 Battery API</p>';
+            if(battery.charging) {
+                str += '<p>你的设备正在充电</p>';
+            } else {
+                str += '<p>你的设备未处于充电状态</p>';
+            }
+            str += '<p>你的设备剩余'+ parseInt(battery.level*100)+'%的电量</p>';
+        } else {
+            str += '<p>你的浏览器不支持HTML5 Battery API</p>';
+        }
+        box.innerHTML = str;
+    </script>
+</body>
+</html>

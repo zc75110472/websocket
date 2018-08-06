@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网络环境</title>
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport">
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        #box{
+            width: 300px;
+            height: 200px;
+            border: 1px solid blue;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        var connection = navigator.connection||navigator.mozConnection||navigator.webkitConnection||{tyep:'unknown'};
+        box.innerHTML = '类型'+connection.type;
+        //微信js浏览器查看网络状态
+        window.onload = function() {
+            document.addEventListener("WeixinJSBridgeReady", onWeixinReady, false);
+        }
+        function onWeixinReady() {
+            WeixinJSBridge.invoke('getNetworkType',{}, function(e){
+                WeixinJSBridge.log(e.err_msg);
+                alert(e.err_msg);
+            });
+        }
+
+    </script>
+</body>
+</html>

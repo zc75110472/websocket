@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" name="viewport">
+    <title>振动</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0
+        }
+        #box{
+            width: 300px;
+            height: 200px;
+            border: 1px solid blue;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="box"></div>
+    <script>
+        // web 是基于c/c++ 底层API实现 和设备交互
+        navigator.vibrate = navigator.vibrate || navigator.webkitVibrate;
+        var timer = null;
+        box.addEventListener('touchstart',function (e) {
+            e.stopPropagation();
+            clearInterval(timer);
+            timer = setInterval(function () {
+                navigator.vibrate(1000);
+            },1000)
+        })
+        
+        document.addEventListener('touchstart',function () {
+            clearInterval(timer);
+            navigator.vibrate(0);
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+hahhaha
+<script src="https://cdn.bootcss.com/socket.io/2.1.1/socket.io.js"></script>
+<script>
+    window.onload = function () {
+        var socket = null;
+        socket = io.connect('http://127.0.0.1:8088');
+        socket.on('client', function (data) {
+            console.log(data)
+            this.emit('seee','qunmd')
+        })
+    }
+</script>
+</body>
+</html>
